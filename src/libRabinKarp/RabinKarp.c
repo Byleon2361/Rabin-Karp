@@ -67,10 +67,29 @@ void search(const char *template, const char *path)
             printf("%s\n", strcat(path, ent->d_name));
         }
     }
-
     closedir(dir);
 }
 void searchRecursive(const char *template, const char *path)
 {
-    int q = 101;
+    char temp[1000];
+    int q = 101; // Простое число
+    DIR *dir;
+    struct dirent *ent;
+    dir = opendir(path);
+    while ((ent = readdir(dir)) != false)
+    {
+        strcpy(temp, path);
+        strcat(temp, "/");
+        strcat(temp, ent->d_name);
+        if (rabinKarp(template, ent->d_name, q))
+        {
+            printf("%s\n", temp);
+        }
+        if ((ent->d_type == DT_DIR) && (strcmp(ent->d_name, "..")) && (strcmp(ent->d_name, ".")))
+        {
+            searchRecursive(template, temp);
+        }
+    }
+    closedir(dir);
 }
+// set args -r ".c" ~/study

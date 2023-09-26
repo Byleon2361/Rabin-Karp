@@ -22,17 +22,15 @@ int main(int argc, char *argv[])
         puts("The number of arguments passed must be three");
         return 0;
     }
-
-    if (argv[1] != "-r")
+    if (strcmp(argv[1], "-r") != 0)
     {
-
         const char *template = argv[1]; // Шаблон
         const char *path = argv[2];     // Путь
         search(template, path);
     }
     else
     {
-        const char *recursive = argv[1];
+        //! 0
         const char *template = argv[2]; // Шаблон
         const char *path = argv[3];     // Путь
         searchRecursive(template, path);
