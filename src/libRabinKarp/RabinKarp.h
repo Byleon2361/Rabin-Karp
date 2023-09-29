@@ -4,7 +4,7 @@
 #include <dirent.h>
 #include <stdbool.h>
 #include <sys/types.h>
-#define d 256
-bool rabinKarp(char underStr[], char str[], int q);
-void searchRecursive(const char *template, const char *path);
-void search(const char *template, const char *path);
+#define b 256
+bool rabinKarp(const char underStr[], const char str[], int q);
+int searchRecursive(const char *template, const char *path);
+int search(const char *template, const char *path);
