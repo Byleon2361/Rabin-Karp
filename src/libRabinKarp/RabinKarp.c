@@ -52,6 +52,7 @@ bool rabinKarp(const char underStr[], const char str[], int q)
 
 int search(const char *template, const char *path)
 {
+    char temp[1000];
     int countFind = 0;
     int q = 101; // Простое число
     DIR *dir;
@@ -62,8 +63,10 @@ int search(const char *template, const char *path)
         if (rabinKarp(template, ent->d_name, q))
         {
             countFind++;
-            path = strcat(path, "/");
-            printf("%s\n", strcat(path, ent->d_name));
+            memset(temp, '\0', 1000);
+            strcat(temp, path);
+            strcat(temp, "/");
+            printf("%s\n", strcat(temp, ent->d_name));
         }
     }
     closedir(dir);
